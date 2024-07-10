@@ -1,9 +1,11 @@
-import { createServer } from "http";
+import express from "express";
 
-const server = createServer((req, res) => {
-  res.end("Hello!");
+const server = express();
+
+server.get("/", (req, res) => {
+  res.send("Hello!");
 });
 
 server.listen(3000, () => {
-  console.log("server ok");
+  console.log("server running");
 });
