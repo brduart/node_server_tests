@@ -3,6 +3,7 @@ import helmet from "helmet";
 import path from "path";
 
 import router from "./routes";
+import { errorHandler, notFound } from "./routes/errorHandler";
 
 const server = express();
 
@@ -12,6 +13,8 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, "../public")));
 
 server.use("/", router);
+server.use(notFound);
+server.use(errorHandler);
 
 server.listen(3000, () => {
   console.log("server running");
